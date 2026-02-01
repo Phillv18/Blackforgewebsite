@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Forge Systems | Precision Machining & Professional Services</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #0a0a0a;
+            --dark: #111111;
+            --dark-gray: #1a1a1a;
+            --gray: #2a2a2a;
+            --light-gray: #888888;
+            --white: #ffffff;
+            --accent: #ff4d00;
+            --accent-dark: #cc3d00;
+            --accent-glow: rgba(255, 77, 0, 0.3);
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Landing Page Layout */
+        .landing-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        .landing-header {
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--white);
+        }
+
+        .logo-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+        }
+
+        .logo-text {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            letter-spacing: 0.1em;
+        }
+
+        .tagline {
+            color: var(--light-gray);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-top: 0.5rem;
+        }
+
+        /* Division Selector */
+        .division-selector {
+            flex: 1;
+            display: flex;
+            position: relative;
+        }
+
+        .division-card {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+            text-decoration: none;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .division-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15;
+            transition: var(--transition);
+        }
+
+        .division-card.machining::before {
+            background:
+                radial-gradient(ellipse at 30% 50%, var(--accent-glow) 0%, transparent 60%),
+                linear-gradient(135deg, var(--dark) 0%, var(--black) 100%);
+        }
+
+        .division-card.services::before {
+            background:
+                radial-gradient(ellipse at 70% 50%, rgba(100, 150, 255, 0.2) 0%, transparent 60%),
+                linear-gradient(135deg, var(--black) 0%, var(--dark) 100%);
+        }
+
+        .division-card:hover::before {
+            opacity: 0.3;
+        }
+
+        .division-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(var(--gray) 1px, transparent 1px),
+                linear-gradient(90deg, var(--gray) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.03;
+            transition: var(--transition);
+        }
+
+        .division-card:hover::after {
+            opacity: 0.06;
+        }
+
+        /* Vertical divider */
+        .division-card.machining {
+            border-right: 1px solid var(--gray);
+        }
+
+        .division-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 500px;
+        }
+
+        .division-icon {
+            font-size: 5rem;
+            margin-bottom: 2rem;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .division-card:hover .division-icon {
+            transform: scale(1.1);
+        }
+
+        .division-card.machining .division-icon {
+            color: var(--accent);
+        }
+
+        .division-card.services .division-icon {
+            color: #6b9fff;
+        }
+
+        .division-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            letter-spacing: 0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .division-subtitle {
+            color: var(--light-gray);
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .division-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            justify-content: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .feature-tag {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--gray);
+            padding: 0.5rem 1rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--light-gray);
+            transition: var(--transition);
+        }
+
+        .division-card:hover .feature-tag {
+            border-color: var(--accent);
+            color: var(--white);
+        }
+
+        .division-card.services:hover .feature-tag {
+            border-color: #6b9fff;
+        }
+
+        .enter-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2.5rem;
+            font-family: var(--font-body);
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .division-card.machining .enter-btn {
+            background: var(--accent);
+            color: var(--white);
+        }
+
+        .division-card.machining .enter-btn:hover {
+            background: var(--accent-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px var(--accent-glow);
+        }
+
+        .division-card.services .enter-btn {
+            background: #4a7fff;
+            color: var(--white);
+        }
+
+        .division-card.services .enter-btn:hover {
+            background: #3a6fee;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(100, 150, 255, 0.3);
+        }
+
+        .enter-btn .arrow {
+            font-size: 1.25rem;
+            transition: var(--transition);
+        }
+
+        .division-card:hover .enter-btn .arrow {
+            transform: translateX(5px);
+        }
+
+        /* Decorative elements */
+        .gear-bg {
+            position: absolute;
+            font-size: 25vw;
+            opacity: 0.02;
+            pointer-events: none;
+            transition: var(--transition);
+        }
+
+        .division-card.machining .gear-bg {
+            color: var(--accent);
+            bottom: -10%;
+            right: -10%;
+        }
+
+        .division-card.services .gear-bg {
+            color: #6b9fff;
+            bottom: -10%;
+            left: -10%;
+        }
+
+        .division-card:hover .gear-bg {
+            opacity: 0.04;
+        }
+
+        /* Footer */
+        .landing-footer {
+            padding: 1.5rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--gray);
+            background: var(--dark);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--light-gray);
+            font-size: 0.8rem;
+        }
+
+        .footer-item span {
+            color: var(--accent);
+        }
+
+        .footer-copyright {
+            color: var(--light-gray);
+            font-size: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .division-selector {
+                flex-direction: column;
+            }
+
+            .division-card.machining {
+                border-right: none;
+                border-bottom: 1px solid var(--gray);
+            }
+
+            .division-card {
+                padding: 3rem 2rem;
+            }
+
+            .division-icon {
+                font-size: 4rem;
+                margin-bottom: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .landing-header {
+                padding: 1.5rem;
+            }
+
+            .logo-text {
+                font-size: 1.5rem;
+            }
+
+            .division-features {
+                gap: 0.5rem;
+            }
+
+            .feature-tag {
+                font-size: 0.65rem;
+                padding: 0.4rem 0.75rem;
+            }
+        }
+
+        /* Animation */
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.15; }
+            50% { opacity: 0.25; }
+        }
+
+        .division-card::before {
+            animation: pulse-glow 4s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="landing-container">
+        <!-- Header -->
+        <header class="landing-header">
+            <div class="logo">
+                <span class="logo-icon">⚙</span>
+                <span class="logo-text">BLACK FORGE SYSTEMS</span>
+            </div>
+            <p class="tagline">Veteran-Owned | Precision | Excellence</p>
+        </header>
+
+        <!-- Division Selector -->
+        <div class="division-selector">
+            <!-- Precision Machining Division -->
+            <a href="machining/index.html" class="division-card machining">
+                <span class="gear-bg">⚙</span>
+                <div class="division-content">
+                    <span class="division-icon">🔩</span>
+                    <h2 class="division-title">PRECISION MACHINING</h2>
+                    <p class="division-subtitle">
+                        Next-generation CNC machining facility built for tight tolerances,
+                        complex geometries, and uncompromising quality.
+                    </p>
+                    <div class="division-features">
+                        <span class="feature-tag">CNC Milling</span>
+                        <span class="feature-tag">5-Axis</span>
+                        <span class="feature-tag">Prototyping</span>
+                        <span class="feature-tag">Production</span>
+                    </div>
+                    <span class="enter-btn">
+                        Enter Division
+                        <span class="arrow">→</span>
+                    </span>
+                </div>
+            </a>
+
+            <!-- Services Division -->
+            <a href="services/index.html" class="division-card services">
+                <span class="gear-bg">⚙</span>
+                <div class="division-content">
+                    <span class="division-icon">👷</span>
+                    <h2 class="division-title">PROFESSIONAL SERVICES</h2>
+                    <p class="division-subtitle">
+                        Engineering expertise, skilled labor solutions, and administrative
+                        support tailored for government and commercial clients.
+                    </p>
+                    <div class="division-features">
+                        <span class="feature-tag">Engineering</span>
+                        <span class="feature-tag">Skilled Labor</span>
+                        <span class="feature-tag">Admin Support</span>
+                        <span class="feature-tag">Consulting</span>
+                    </div>
+                    <span class="enter-btn">
+                        Enter Division
+                        <span class="arrow">→</span>
+                    </span>
+                </div>
+            </a>
+        </div>
+
+        <!-- Footer -->
+        <footer class="landing-footer">
+            <div class="footer-content">
+                <div class="footer-item">
+                    <span>◆</span> Veteran-Owned
+                </div>
+                <div class="footer-item">
+                    <span>◆</span> AS9100 Pathway
+                </div>
+                <div class="footer-item">
+                    <span>◆</span> ITAR Registration In Progress
+                </div>
+            </div>
+            <p class="footer-copyright">© 2026 Black Forge Systems. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
