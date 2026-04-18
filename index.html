@@ -1,588 +1,254 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Black Forge Systems | Precision Machining & Professional Services</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --black: #0a0a0a;
-            --dark: #111111;
-            --dark-gray: #1a1a1a;
-            --gray: #2a2a2a;
-            --light-gray: #888888;
-            --white: #ffffff;
-            --accent: #ff4d00;
-            --accent-dark: #cc3d00;
-            --accent-glow: rgba(255, 77, 0, 0.3);
-            --font-display: 'Bebas Neue', sans-serif;
-            --font-body: 'Inter', sans-serif;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html, body {
-            height: 100%;
-        }
-
-        body {
-            font-family: var(--font-body);
-            background-color: var(--black);
-            color: var(--white);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Landing Page Layout */
-        .landing-container {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Header */
-        .landing-header {
-            padding: 2rem;
-            text-align: center;
-            position: relative;
-            z-index: 10;
-            overflow: hidden;
-        }
-
-        .landing-header::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image:
-                repeating-linear-gradient(
-                    to bottom,
-                    rgba(255, 77, 0, 0.12) 0,
-                    rgba(255, 77, 0, 0.12) 8px,
-                    transparent 8px,
-                    transparent 16px
-                ),
-                radial-gradient(
-                    circle at 8px 8px,
-                    rgba(255, 77, 0, 0.14) 0,
-                    rgba(255, 77, 0, 0.14) 1px,
-                    transparent 1px
-                );
-            background-size: 100% 100%, 160px 96px;
-            background-position: center, left 16px top 12px;
-            opacity: 0.18;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .landing-header::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 180px;
-            height: 110px;
-            background: rgba(255, 77, 0, 0.08);
-            mix-blend-mode: screen;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .landing-header > * {
-            position: relative;
-            z-index: 1;
-        }
-
-        .logo {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            text-decoration: none;
-            color: var(--white);
-        }
-
-        .logo-icon {
-            width: 2.5rem;
-            height: 2.5rem;
-            color: var(--accent);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .logo-text {
-            font-family: var(--font-display);
-            font-size: 2rem;
-            letter-spacing: 0.1em;
-        }
-
-        .tagline {
-            color: var(--light-gray);
-            font-size: 0.875rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            margin-top: 0.5rem;
-        }
-
-        /* Division Selector */
-        .division-selector {
-            flex: 1;
-            display: flex;
-            position: relative;
-        }
-
-        .division-card {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 4rem 2rem;
-            text-decoration: none;
-            color: var(--white);
-            position: relative;
-            overflow: hidden;
-            transition: var(--transition);
-            cursor: pointer;
-        }
-
-        .division-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-size: cover;
-            background-position: center;
-            opacity: 0.15;
-            transition: var(--transition);
-        }
-
-        .division-card.machining::before {
-            background:
-                radial-gradient(ellipse at 30% 50%, var(--accent-glow) 0%, transparent 60%),
-                linear-gradient(135deg, var(--dark) 0%, var(--black) 100%);
-        }
-
-        .division-card.services::before {
-            background:
-                radial-gradient(ellipse at 70% 50%, rgba(100, 150, 255, 0.2) 0%, transparent 60%),
-                linear-gradient(135deg, var(--black) 0%, var(--dark) 100%);
-        }
-
-        .division-card:hover::before {
-            opacity: 0.3;
-        }
-
-        .division-card::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image:
-                linear-gradient(var(--gray) 1px, transparent 1px),
-                linear-gradient(90deg, var(--gray) 1px, transparent 1px);
-            background-size: 50px 50px;
-            opacity: 0.03;
-            transition: var(--transition);
-        }
-
-        .division-card:hover::after {
-            opacity: 0.06;
-        }
-
-        /* Vertical divider */
-        .division-card.machining {
-            border-right: 1px solid var(--gray);
-        }
-
-        .division-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            max-width: 500px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .division-icon {
-            width: 25rem;
-            height: 25rem;
-            margin-bottom: 2rem;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transition);
-            align-self: center;
-            line-height: 0;
-        }
-
-        .division-card:hover .division-icon {
-            transform: scale(1.1);
-        }
-
-        .division-card.machining .division-icon {
-            color: var(--accent);
-        }
-
-        .division-card.services .division-icon {
-            color: #6b9fff;
-        }
-
-        .division-title {
-            font-family: var(--font-display);
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            letter-spacing: 0.02em;
-            margin-bottom: 1rem;
-        }
-
-        .division-subtitle {
-            color: var(--light-gray);
-            font-size: 1rem;
-            margin-bottom: 2rem;
-            line-height: 1.7;
-        }
-
-        .division-features {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            justify-content: center;
-            margin-bottom: 2.5rem;
-        }
-
-        .feature-tag {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--gray);
-            padding: 0.5rem 1rem;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--light-gray);
-            transition: var(--transition);
-        }
-
-        .division-card:hover .feature-tag {
-            border-color: var(--accent);
-            color: var(--white);
-        }
-
-        .division-card.services:hover .feature-tag {
-            border-color: #6b9fff;
-        }
-
-        .enter-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 1rem 2.5rem;
-            font-family: var(--font-body);
-            font-size: 0.875rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            border: none;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .division-card.machining .enter-btn {
-            background: var(--accent);
-            color: var(--white);
-        }
-
-        .division-card.machining .enter-btn:hover {
-            background: var(--accent-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px var(--accent-glow);
-        }
-
-        .division-card.services .enter-btn {
-            background: #4a7fff;
-            color: var(--white);
-        }
-
-        .division-card.services .enter-btn:hover {
-            background: #3a6fee;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(100, 150, 255, 0.3);
-        }
-
-        .enter-btn .arrow {
-            font-size: 1.25rem;
-            transition: var(--transition);
-        }
-
-        .division-card:hover .enter-btn .arrow {
-            transform: translateX(5px);
-        }
-
-        /* Decorative elements */
-        .gear-bg {
-            position: absolute;
-            width: 25vw;
-            height: 25vw;
-            opacity: 0.02;
-            pointer-events: none;
-            transition: var(--transition);
-        }
-
-        .division-card.machining .gear-bg {
-            color: var(--accent);
-            bottom: -10%;
-            right: -10%;
-        }
-
-        .division-card.services .gear-bg {
-            color: #6b9fff;
-            bottom: -10%;
-            left: -10%;
-        }
-
-        .division-card:hover .gear-bg {
-            opacity: 0.04;
-        }
-
-        /* Footer */
-        .landing-footer {
-            padding: 1.5rem 2rem;
-            text-align: center;
-            border-top: 1px solid var(--gray);
-            background: var(--dark);
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .footer-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--light-gray);
-            font-size: 0.8rem;
-        }
-
-        .footer-item span {
-            color: var(--accent);
-        }
-
-        .icon {
-            width: 1em;
-            height: 1em;
-            stroke: currentColor;
-            fill: none;
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-
-        .division-icon .icon {
-            width: 100%;
-            height: 100%;
-            display: block;
-        }
-
-        .icon-bg {
-            width: 100%;
-            height: 100%;
-            stroke-width: 1;
-        }
-
-        .footer-copyright {
-            color: var(--light-gray);
-            font-size: 0.75rem;
-            margin-top: 1rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 900px) {
-            .division-selector {
-                flex-direction: column;
-            }
-
-            .division-card.machining {
-                border-right: none;
-                border-bottom: 1px solid var(--gray);
-            }
-
-            .division-card {
-                padding: 3rem 2rem;
-            }
-
-            .division-icon {
-                width: 20rem;
-                height: 20rem;
-                margin-bottom: 1.5rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .landing-header {
-                padding: 1.5rem;
-            }
-
-            .logo-text {
-                font-size: 1.5rem;
-            }
-
-            .division-features {
-                gap: 0.5rem;
-            }
-
-            .feature-tag {
-                font-size: 0.65rem;
-                padding: 0.4rem 0.75rem;
-            }
-        }
-
-        /* Animation */
-        @keyframes pulse-glow {
-            0%, 100% { opacity: 0.15; }
-            50% { opacity: 0.25; }
-        }
-
-        .division-card::before {
-            animation: pulse-glow 4s ease-in-out infinite;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Black Forge Systems | Precision Machining &amp; Professional Services</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" focusable="false">
-        <symbol id="icon-gear" viewBox="0 0 64 64">
-            <circle cx="32" cy="32" r="18"></circle>
-            <circle cx="32" cy="32" r="6"></circle>
-            <rect x="30" y="3" width="4" height="10" rx="1" transform="rotate(0 32 32)"></rect>
-            <rect x="30" y="3" width="4" height="10" rx="1" transform="rotate(30 32 32)"></rect>
-            <rect x="30" y="3" width="4" height="10" rx="1" transform="rotate(60 32 32)"></rect>
-            <rect x="30" y="3" width="4" height="10" rx="1" transform="rotate(90 32 32)"></rect>
-            <rect x="30" y="3" width="4" height="10" rx="1" transform="rotate(120 32 32)"></rect>
-            <rect x="30" y="3" width="4" height="10" rx="1" transform="rotate(150 32 32)"></rect>
-            <rect x="30" y="3" width="4" height="10" rx="1" transform="rotate(180 32 32)"></rect>
-            <rect x="30" y="3" width="4" height="10" rx="1" transform="rotate(210 32 32)"></rect>
-            <rect x="30" y="3" width="4" height="10" rx="1" transform="rotate(240 32 32)"></rect>
-            <rect x="30" y="3" width="4" height="10" rx="1" transform="rotate(270 32 32)"></rect>
-            <rect x="30" y="3" width="4" height="10" rx="1" transform="rotate(300 32 32)"></rect>
-            <rect x="30" y="3" width="4" height="10" rx="1" transform="rotate(330 32 32)"></rect>
-        </symbol>
-        <symbol id="icon-hardhat" viewBox="0 0 64 64">
-            <rect x="12" y="38" width="40" height="6" rx="1"></rect>
-            <path d="M20 38v-6a12 12 0 0 1 24 0v6"></path>
-            <path d="M24 32v6"></path>
-            <path d="M32 30v8"></path>
-            <path d="M40 32v6"></path>
-        </symbol>
-        <symbol id="icon-briefcase-badge" viewBox="0 0 64 64">
-            <rect x="12" y="20" width="40" height="28" rx="2"></rect>
-            <path d="M24 20v-6h16v6"></path>
-            <path d="M12 30h40"></path>
-            <circle cx="46" cy="40" r="5"></circle>
-            <path d="M44 40l2 2 4-4"></path>
-        </symbol>
-    </svg>
-    <div class="landing-container">
-        <!-- Header -->
-        <header class="landing-header">
-            <div class="logo">
-                <span class="logo-icon">
-                    <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
-                        <use href="#icon-gear"></use>
-                    </svg>
-                </span>
-                <span class="logo-text">BLACK FORGE SYSTEMS</span>
-            </div>
-            <p class="tagline">Veteran-Owned | Precision | Excellence</p>
-        </header>
 
-        <!-- Division Selector -->
-        <div class="division-selector">
-            <!-- Precision Machining Division -->
-            <a href="machining/index.html" class="division-card machining">
-                <span class="gear-bg">
-                    <svg class="icon icon-bg" viewBox="0 0 64 64" aria-hidden="true">
-                        <use href="#icon-gear"></use>
-                    </svg>
-                </span>
-                <div class="division-content">
-                    <span class="division-icon">
-                        <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
-                            <use href="#icon-gear"></use>
-                        </svg>
-                    </span>
-                    <h2 class="division-title">PRECISION MACHINING</h2>
-                    <p class="division-subtitle">
-                        Next-generation CNC machining facility built for tight tolerances,
-                        complex geometries, and uncompromising quality.
-                    </p>
-                    <div class="division-features">
-                        <span class="feature-tag">CNC Milling</span>
-                        <span class="feature-tag">5-Axis</span>
-                        <span class="feature-tag">Prototyping</span>
-                        <span class="feature-tag">Production</span>
-                    </div>
-                    <span class="enter-btn">
-                        Enter Division
-                        <span class="arrow">→</span>
-                    </span>
-                </div>
-            </a>
+<!-- ICON SPRITE -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="i-gear" viewBox="0 0 64 64">
+    <circle cx="32" cy="32" r="18"/><circle cx="32" cy="32" r="6"/>
+    <rect x="30" y="3" width="4" height="10" rx="1"/>
+    <rect x="30" y="3" width="4" height="10" rx="1" transform="rotate(30 32 32)"/>
+    <rect x="30" y="3" width="4" height="10" rx="1" transform="rotate(60 32 32)"/>
+    <rect x="30" y="3" width="4" height="10" rx="1" transform="rotate(90 32 32)"/>
+    <rect x="30" y="3" width="4" height="10" rx="1" transform="rotate(120 32 32)"/>
+    <rect x="30" y="3" width="4" height="10" rx="1" transform="rotate(150 32 32)"/>
+    <rect x="30" y="3" width="4" height="10" rx="1" transform="rotate(180 32 32)"/>
+    <rect x="30" y="3" width="4" height="10" rx="1" transform="rotate(210 32 32)"/>
+    <rect x="30" y="3" width="4" height="10" rx="1" transform="rotate(240 32 32)"/>
+    <rect x="30" y="3" width="4" height="10" rx="1" transform="rotate(270 32 32)"/>
+    <rect x="30" y="3" width="4" height="10" rx="1" transform="rotate(300 32 32)"/>
+    <rect x="30" y="3" width="4" height="10" rx="1" transform="rotate(330 32 32)"/>
+  </symbol>
+  <symbol id="i-hardhat" viewBox="0 0 64 64">
+    <rect x="12" y="38" width="40" height="6" rx="1"/>
+    <path d="M20 38v-6a12 12 0 0 1 24 0v6"/>
+    <path d="M24 32v6"/><path d="M32 30v8"/><path d="M40 32v6"/>
+  </symbol>
+  <symbol id="i-briefcase" viewBox="0 0 64 64">
+    <rect x="12" y="20" width="40" height="28" rx="2"/>
+    <path d="M24 20v-6h16v6"/><path d="M12 30h40"/>
+    <circle cx="46" cy="40" r="5"/><path d="M44 40l2 2 4-4"/>
+  </symbol>
+  <symbol id="i-arrow" viewBox="0 0 64 64">
+    <path d="M10 32h44"/><path d="M40 18l14 14-14 14"/>
+  </symbol>
+  <symbol id="i-shield" viewBox="0 0 64 64">
+    <path d="M32 6l20 8v18c0 14-8 22-20 26-12-4-20-12-20-26V14z"/>
+    <path d="M22 32l8 8 14-14"/>
+  </symbol>
+  <symbol id="i-spark" viewBox="0 0 64 64">
+    <path d="M32 6l6 18 18 6-18 6-6 18-6-18-18-6 18-6z"/>
+  </symbol>
+</svg>
 
-            <!-- Services Division -->
-            <a href="services/index.html" class="division-card services">
-                <span class="gear-bg">
-                    <svg class="icon icon-bg" viewBox="0 0 64 64" aria-hidden="true">
-                        <use href="#icon-gear"></use>
-                    </svg>
-                </span>
-                <div class="division-content">
-                    <span class="division-icon">
-                        <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
-                            <use href="#icon-briefcase-badge"></use>
-                        </svg>
-                    </span>
-                    <h2 class="division-title">PROFESSIONAL SERVICES</h2>
-                    <p class="division-subtitle">
-                        Engineering expertise, skilled labor solutions, and administrative
-                        support tailored for government and commercial clients.
-                    </p>
-                    <div class="division-features">
-                        <span class="feature-tag">Engineering</span>
-                        <span class="feature-tag">Skilled Labor</span>
-                        <span class="feature-tag">Admin Support</span>
-                        <span class="feature-tag">Consulting</span>
-                    </div>
-                    <span class="enter-btn">
-                        Enter Division
-                        <span class="arrow">→</span>
-                    </span>
-                </div>
-            </a>
+<!-- NAVBAR -->
+<nav class="nav" id="nav">
+  <a class="brand" href="index.html" aria-label="Black Forge Systems">
+    <svg><use href="#i-gear"/></svg>
+    <span class="wm">BLACK FORGE</span>
+  </a>
+  <ul>
+    <li><a href="machining/index.html">Machining</a></li>
+    <li><a href="services/index.html">Services</a></li>
+    <li><a href="#capabilities">Capabilities</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+  <a class="cta" href="machining/index.html#contact">Request a Quote</a>
+</nav>
+
+<!-- DIVISION STRIP -->
+<div class="division-strip">
+  <a class="tab orange" href="machining/index.html">
+    <span class="tab-dot"></span>DIV-01 · MACHINING · ACTIVE
+  </a>
+  <a class="tab blue" href="services/index.html">
+    <span class="tab-dot"></span>DIV-02 · SERVICES · STAFFING LIVE
+  </a>
+</div>
+
+<main class="main">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="page">
+      <div class="hero-head">
+        <span class="eyebrow">BFS · EST 2026 · VETERAN-OWNED</span>
+        <h1>PRECISION<span class="brush">MACHINED</span></h1>
+        <p class="lead">A next-generation CNC machining and professional services outfit, built from the ground up for tight tolerances, complex geometries, and uncompromising quality.</p>
+        <div class="hero-actions">
+          <a class="btn btn-lg" href="machining/index.html#contact">
+            Request a Quote <svg class="ico-s"><use href="#i-arrow"/></svg>
+          </a>
+          <a class="btn btn-outline btn-lg" href="#capabilities">View Capabilities</a>
         </div>
-
-        <!-- Footer -->
-        <footer class="landing-footer">
-            <div class="footer-content">
-                <div class="footer-item">
-                    <span>◆</span> Veteran-Owned
-                </div>
-                <div class="footer-item">
-                    <span>◆</span> AS9100 Pathway
-                </div>
-                <div class="footer-item">
-                    <span>◆</span> ITAR Registration In Progress
-                </div>
-            </div>
-            <p class="footer-copyright">© 2026 Black Forge Systems. All rights reserved.</p>
-        </footer>
+        <div class="meta-row">
+          <div class="m"><span class="mk">Tolerance</span><span class="mv">±.0002"</span></div>
+          <div class="m"><span class="mk">Envelope</span><span class="mv">24"</span></div>
+          <div class="m"><span class="mk">Axes</span><span class="mv">5-AXIS</span></div>
+          <div class="m"><span class="mk">Inspection</span><span class="mv">100%</span></div>
+        </div>
+      </div>
+      <div class="laser-box" aria-hidden="true">
+        <span class="stamp-tl">BFS / DIV-00</span>
+        <span class="corner tl"></span>
+        <span class="corner tr"></span>
+        <span class="corner bl"></span>
+        <span class="corner br"></span>
+        <span class="beam"></span>
+        <div class="core">
+          <svg><use href="#i-gear"/></svg>
+          <div class="t1">FORGE-READY</div>
+          <div class="t2">INQUIRIES OPEN</div>
+        </div>
+        <span class="stamp">REV-C · 04 / 2026</span>
+      </div>
     </div>
+  </header>
+
+  <!-- DIVISIONS -->
+  <section class="sec" id="capabilities">
+    <div class="page">
+      <div class="sec-head">
+        <div>
+          <span class="eyebrow">TWO DIVISIONS · ONE STANDARD</span>
+          <h2>What We Build.<br>Who We Send.</h2>
+        </div>
+        <div class="aside">SEC / 01</div>
+      </div>
+
+      <div class="divisions">
+        <a class="division-card" href="machining/index.html">
+          <div class="ghost"><svg><use href="#i-gear"/></svg></div>
+          <div>
+            <div class="div-tag">DIV-01 · MACHINING</div>
+            <h3>PRECISION MACHINING</h3>
+            <p>3/4/5-axis CNC milling for aerospace and defense-tolerance parts, exotic alloys, and short-run production.</p>
+          </div>
+          <div class="links">
+            <span>CNC Milling · 3·4·5 Axis</span>
+            <span>Aerospace &amp; Defense Tolerances</span>
+            <span>Aluminum · Stainless · Titanium · Inconel</span>
+          </div>
+          <span class="go">Enter Machining <svg><use href="#i-arrow"/></svg></span>
+        </a>
+
+        <a class="division-card blue" href="services/index.html">
+          <div class="ghost"><svg><use href="#i-hardhat"/></svg></div>
+          <div>
+            <div class="div-tag">DIV-02 · SERVICES</div>
+            <h3>PROFESSIONAL SERVICES</h3>
+            <p>Engineering staff augmentation, skilled labor, and admin support. DoD and commercial. Clearance-capable, mission ready.</p>
+          </div>
+          <div class="links">
+            <span>Engineering Staff Aug</span>
+            <span>Skilled Trades &amp; Admin Support</span>
+            <span>SAM.gov Registered · ITAR In Progress</span>
+          </div>
+          <span class="go">Enter Services <svg><use href="#i-arrow"/></svg></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BANNER -->
+  <section class="stats-wrap">
+    <div class="page">
+      <div class="stats-banner">
+        <div class="inner">
+          <div><div class="stat-n">±.0002"</div><div class="stat-l">Tolerance Capability</div></div>
+          <div><div class="stat-n">5-AXIS</div><div class="stat-l">Multi-Axis Milling</div></div>
+          <div><div class="stat-n">24"</div><div class="stat-l">Max Part Envelope</div></div>
+          <div><div class="stat-n">100%</div><div class="stat-l">In-Process Inspection</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPEC PLATE -->
+  <section class="sec" id="about">
+    <div class="page">
+      <div class="sec-head">
+        <div>
+          <span class="eyebrow">CAPABILITY DATA PLATE</span>
+          <h2>Credentials &amp; Specs</h2>
+        </div>
+        <div class="aside">SEC / 02 · REV-C</div>
+      </div>
+
+      <div class="spec-plate">
+        <div class="cell"><div class="k">Ownership</div><div class="v ember">VETERAN-OWNED</div></div>
+        <div class="cell"><div class="k">Classification</div><div class="v">SDVOSB</div></div>
+        <div class="cell"><div class="k">Cert Pathway</div><div class="v">AS9100</div></div>
+        <div class="cell"><div class="k">Compliance</div><div class="v ember">ITAR · SAM.GOV</div></div>
+        <div class="cell"><div class="k">NAICS</div><div class="v">332710</div></div>
+        <div class="cell"><div class="k">CAGE</div><div class="v">PENDING</div></div>
+        <div class="cell"><div class="k">Clearance</div><div class="v ember">SECRET CAPABLE</div></div>
+        <div class="cell"><div class="k">Status</div><div class="v">INQUIRIES OPEN</div></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="foot">
+  <div class="page">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="index.html">
+          <svg><use href="#i-gear"/></svg>
+          <span>BLACK FORGE SYSTEMS</span>
+        </a>
+        <p>Precision machined. Mission ready. Veteran-owned CNC and professional services for defense and commercial clients.</p>
+      </div>
+      <div>
+        <h5>Machining</h5>
+        <ul>
+          <li><a href="machining/index.html">CNC Milling</a></li>
+          <li><a href="machining/index.html">Multi-Axis</a></li>
+          <li><a href="machining/index.html">Prototyping</a></li>
+          <li><a href="machining/index.html">Inspection</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Services</h5>
+        <ul>
+          <li><a href="services/index.html">Engineering</a></li>
+          <li><a href="services/index.html">Skilled Trades</a></li>
+          <li><a href="services/index.html">Admin Support</a></li>
+          <li><a href="services/index.html">DoD Contracts</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#about">Credentials</a></li>
+          <li><a href="machining/index.html#contact">Contact</a></li>
+          <li><a href="machining/index.html#contact">Quote</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>© BLACK FORGE SYSTEMS · 2026</div>
+      <div class="trust">
+        <span>VETERAN-OWNED</span>
+        <span>SDVOSB</span>
+        <span>AS9100 PATHWAY</span>
+        <span>ITAR IN PROGRESS</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
